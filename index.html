@@ -1,123 +1,439 @@
 <!DOCTYPE HTML>
 <!--
-	Photon by HTML5 UP
-	html5up.net | @ajlkn
+	Photon by HTML5 UP — html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Customised for AIForEcom
 -->
 <html>
 	<head>
-		<title>AIForEcom</title>
+		<title>AIForEcom — AI Tools for E-Commerce Sellers</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<meta name="google-site-verification" content="google59dd4f55189d9135" />
-		<meta name="description" content="AIForEcom helps Shopify, Etsy, and Amazon sellers find the right AI tools. Honest reviews, comparisons, and tutorials." />
+		<meta name="description" content="Honest reviews and comparisons of AI tools for Shopify, Etsy, and Amazon sellers. No hype — just what actually works." />
 		<link rel="icon" href="/favicon.ico" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			/* ── Site nav (minimal addition — doesn't touch existing CSS) ── */
+			#site-nav {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				z-index: 9999;
+				background: rgba(36, 41, 67, 0.97);
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0 2em;
+				height: 54px;
+				backdrop-filter: blur(4px);
+			}
+			#site-nav .nav-logo {
+				font-size: 1.1em;
+				font-weight: 600;
+				color: #fff;
+				text-decoration: none;
+				letter-spacing: 0.03em;
+			}
+			#site-nav ul {
+				list-style: none;
+				display: flex;
+				gap: 0.2em;
+				margin: 0;
+				padding: 0;
+			}
+			#site-nav ul li a {
+				color: rgba(255,255,255,0.75);
+				text-decoration: none;
+				font-size: 0.82em;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				padding: 0.5em 0.9em;
+				border-radius: 4px;
+				transition: color 0.2s, background 0.2s;
+			}
+			#site-nav ul li a:hover {
+				color: #fff;
+				background: rgba(255,255,255,0.1);
+			}
+			#site-nav ul li a.nav-highlight {
+				color: #fff;
+				background: rgba(99, 179, 237, 0.25);
+				border: 1px solid rgba(99, 179, 237, 0.5);
+			}
+			#site-nav ul li a.nav-highlight:hover {
+				background: rgba(99, 179, 237, 0.4);
+			}
+			/* Push body down so nav doesn't cover hero text */
+			body { padding-top: 54px; }
+			#header { margin-top: -54px; padding-top: 54px; }
+
+			/* ── Article cards ── */
+			.article-card {
+				background: #fff;
+				border: 1px solid #e8eaf0;
+				border-radius: 8px;
+				padding: 1.6em 1.6em 1.4em;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				transition: box-shadow 0.2s, transform 0.2s;
+			}
+			.article-card:hover {
+				box-shadow: 0 6px 24px rgba(0,0,0,0.09);
+				transform: translateY(-2px);
+			}
+			.article-card .card-tag {
+				display: inline-block;
+				font-size: 0.68em;
+				font-weight: 700;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				color: #6366f1;
+				margin-bottom: 0.6em;
+			}
+			.article-card h3 {
+				font-size: 1em !important;
+				line-height: 1.4 !important;
+				margin: 0 0 0.6em !important;
+				color: #1a1a2e !important;
+			}
+			.article-card p {
+				font-size: 0.88em;
+				color: #555;
+				line-height: 1.6;
+				flex: 1;
+				margin: 0 0 1.2em;
+			}
+			.article-card a.read-link {
+				font-size: 0.82em;
+				font-weight: 700;
+				letter-spacing: 0.06em;
+				text-transform: uppercase;
+				color: #6366f1;
+				text-decoration: none;
+				transition: color 0.2s;
+			}
+			.article-card a.read-link:hover { color: #4f46e5; }
+			.article-card a.read-link::after { content: " →"; }
+
+			/* ── Tool spotlight cards ── */
+			.tool-card {
+				background: #fff;
+				border: 1px solid #e8eaf0;
+				border-radius: 8px;
+				padding: 1.6em;
+				text-align: center;
+			}
+			.tool-card .tool-name {
+				font-size: 1.05em;
+				font-weight: 700;
+				color: #1a1a2e;
+				margin-bottom: 0.4em;
+			}
+			.tool-card .tool-commission {
+				display: inline-block;
+				font-size: 0.7em;
+				font-weight: 700;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				background: #ecfdf5;
+				color: #059669;
+				padding: 0.2em 0.7em;
+				border-radius: 20px;
+				margin-bottom: 0.8em;
+			}
+			.tool-card p {
+				font-size: 0.85em;
+				color: #555;
+				line-height: 1.6;
+				margin: 0 0 1em;
+			}
+
+			/* ── Section spacing tweaks ── */
+			.articles-section { padding: 4em 0; }
+			.section-eyebrow {
+				font-size: 0.75em;
+				font-weight: 700;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: #6366f1;
+				display: block;
+				margin-bottom: 0.5em;
+			}
+
+			/* ── Responsive nav ── */
+			@media screen and (max-width: 640px) {
+				#site-nav { padding: 0 1em; }
+				#site-nav ul { display: none; }
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
-		<!-- Header -->
-			<header id="header">
-				<div class="inner">
-					<nav class="site-nav">
-						<a href="#header" class="logo">AIForEcom</a>
+		<!-- Nav -->
+		<nav id="site-nav">
+			<a href="#header" class="nav-logo">AIForEcom</a>
+			<ul>
+				<li><a href="#articles">Reviews</a></li>
+				<li><a href="#articles">Comparisons</a></li>
+				<li><a href="#articles">Tutorials</a></li>
+				<li><a href="#tools">Top Tools</a></li>
+				<li><a href="stack-finder.html" class="nav-highlight">AI Stack Finder</a></li>
+			</ul>
+		</nav>
+
+		<!-- Header / Hero -->
+		<section id="header">
+			<div class="inner">
+				<span class="icon solid major fa-store"></span>
+				<h1>Find the right AI tools<br />for your e-commerce store</h1>
+				<p>Honest reviews and comparisons of AI tools for Shopify, Etsy, and Amazon sellers.<br />
+				No hype — just what actually works.</p>
+				<ul class="actions special">
+					<li><a href="#articles" class="button scrolly primary">Read the reviews</a></li>
+					<li><a href="stack-finder.html" class="button scrolly">Take the AI Stack Quiz</a></li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- One: Why AIForEcom -->
+		<section id="one" class="main style1">
+			<div class="container">
+				<div class="row gtr-150">
+					<div class="col-6 col-12-medium">
+						<header class="major">
+							<h2>Real tests. Real results.<br />No affiliate fluff.</h2>
+						</header>
+						<p>Most "AI tool reviews" are just spec sheets rewritten for SEO. We actually sign up for free trials, run the same products through each tool, and show you the output side by side. Then we tell you what's worth paying for.</p>
+						<p>We cover every AI tool a Shopify, Etsy, or Amazon seller needs — from writing product descriptions to handling customer support to optimising listings for search.</p>
+					</div>
+					<div class="col-6 col-12-medium imp-medium">
+						<ul class="major-icons">
+							<li><span class="icon solid style1 major fa-pen-nib"></span></li>
+							<li><span class="icon solid style2 major fa-headset"></span></li>
+							<li><span class="icon solid style3 major fa-envelope"></span></li>
+							<li><span class="icon solid style4 major fa-search"></span></li>
+							<li><span class="icon solid style5 major fa-camera"></span></li>
+							<li><span class="icon solid style6 major fa-chart-line"></span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Two: Categories -->
+		<section id="two" class="main style2">
+			<div class="container">
+				<div class="row gtr-150">
+					<div class="col-6 col-12-medium">
+						<header class="major">
+							<h2>Everything a seller needs,<br />nothing they don't.</h2>
+						</header>
+						<p>AI tools for e-commerce fall into six categories — and the best stacks use one strong tool per category rather than ten mediocre ones. We test across all of them so you know exactly what to use and when.</p>
+						<p>Whether you're a solo Etsy seller spending two hours a week on admin, or a Shopify store owner managing a catalogue of 500 products, the right AI stack looks different. Our <a href="stack-finder.html">AI Stack Finder</a> helps you build yours in five minutes, for free.</p>
+					</div>
+					<div class="col-6 col-12-medium">
+						<header class="major">
+							<h2>What we cover</h2>
+						</header>
 						<ul>
-							<li><a href="#header">Home</a></li>
-							<li><a href="#featured">Reviews</a></li>
-							<li><a href="#featured">Comparisons</a></li>
-							<li><a href="#featured">Tutorials</a></li>
-							<li><a href="/stack-finder.html">AI Stack Finder</a></li>
-						</ul>
-					</nav>
-					<div class="hero-content">
-						<h1>Find the right AI tools for your e-commerce store</h1>
-						<p>Honest reviews and comparisons of AI tools for Shopify, Etsy, and Amazon sellers. No hype — just what actually works.</p>
-						<ul class="actions special">
-							<li><a href="#featured" class="button primary">See our top picks</a></li>
-							<li><a href="/stack-finder.html" class="button">Take the AI Stack Quiz</a></li>
+							<li><strong>Copywriting</strong> — product descriptions, ad copy, email templates</li>
+							<li><strong>Customer support</strong> — AI chatbots, helpdesks, automated replies</li>
+							<li><strong>Email marketing</strong> — automated flows, AI-written campaigns, segmentation</li>
+							<li><strong>SEO</strong> — listing optimisation, keyword research, content tools</li>
+							<li><strong>Product photography</strong> — background removal, model swapping, lifestyle scenes</li>
+							<li><strong>Analytics &amp; automation</strong> — inventory, reporting, workflow tools</li>
 						</ul>
 					</div>
 				</div>
-			</header>
+			</div>
+		</section>
 
-		<!-- Featured -->
-			<section id="featured" class="main style1">
-				<div class="container">
-					<header class="major">
-						<h2>Top-rated AI tools for e-commerce</h2>
-					</header>
-					<div class="row gtr-150">
-						<article class="col-4 col-12-medium card">
-							<div class="card-image"></div>
-							<h3>Best AI tools for Shopify stores</h3>
-							<p>Our top picks across copywriting, customer support, and SEO — tested on real stores.</p>
-							<ul class="actions special">
-								<li><a href="/best-ai-tools-shopify.html" class="button primary small">Read more</a></li>
-							</ul>
-						</article>
-						<article class="col-4 col-12-medium card">
-							<div class="card-image"></div>
-							<h3>AI product description generators: reviewed</h3>
-							<p>We tested Jasper, Copy.ai, and Shopify Magic on the same product. Here's what happened.</p>
-							<ul class="actions special">
-								<li><a href="/ai-product-description-generators.html" class="button primary small">Read more</a></li>
-							</ul>
-						</article>
-						<article class="col-4 col-12-medium card">
-							<div class="card-image"></div>
-							<h3>Jasper AI review for e-commerce</h3>
-							<p>Is Jasper worth $39/mo for Shopify sellers? We used it for 30 days to find out.</p>
-							<ul class="actions special">
-								<li><a href="/jasper-ai-review-ecommerce.html" class="button primary small">Read more</a></li>
-							</ul>
-						</article>
+		<!-- Three: Featured articles (1–3) -->
+		<section id="three" class="main style1 special">
+			<div class="container">
+				<header class="major">
+					<span class="section-eyebrow">Start here</span>
+					<h2>Our most-read guides</h2>
+				</header>
+				<div class="row gtr-150">
+					<div class="col-4 col-12-medium">
+						<div class="article-card">
+							<span class="card-tag">Hub guide</span>
+							<h3>Best AI tools for Shopify stores (2026)</h3>
+							<p>Our top picks across copywriting, customer support, SEO, and email — tested on real stores with real products.</p>
+							<a href="best-ai-tools-shopify.html" class="read-link">Read the guide</a>
+						</div>
+					</div>
+					<div class="col-4 col-12-medium">
+						<div class="article-card">
+							<span class="card-tag">Comparison</span>
+							<h3>AI product description generators: honest review</h3>
+							<p>We ran the same product through Jasper, Copy.ai, and Shopify Magic. Here's the output side by side.</p>
+							<a href="ai-product-description-generators.html" class="read-link">Read the review</a>
+						</div>
+					</div>
+					<div class="col-4 col-12-medium">
+						<div class="article-card">
+							<span class="card-tag">In-depth review</span>
+							<h3>Jasper AI review for e-commerce sellers</h3>
+							<p>Is Jasper worth $39/month for Shopify sellers? We used it for 30 days across descriptions, ads, and email.</p>
+							<a href="jasper-ai-review-ecommerce.html" class="read-link">Read the review</a>
+						</div>
 					</div>
 				</div>
-			</section>
+			</div>
+		</section>
 
-		<!-- Why AIForEcom -->
-			<section class="main style1">
-				<div class="container">
-					<header class="major">
-						<h3>Expert guidance for ecommerce AI tools</h3>
-					</header>
-					<p>AIForEcom helps Shopify, Etsy, and Amazon sellers cut through the AI noise with honest reviews, comparisons, and tutorials tailored to real store results.</p>
+		<!-- Articles 4–6 -->
+		<section id="articles" class="main style1 special">
+			<div class="container">
+				<header class="major">
+					<span class="section-eyebrow">All articles</span>
+					<h2>Reviews &amp; comparisons</h2>
+				</header>
+				<div class="row gtr-150">
+					<div class="col-4 col-12-medium">
+						<div class="article-card">
+							<span class="card-tag">Comparison</span>
+							<h3>Tidio vs Gorgias: which AI support tool is right for your store?</h3>
+							<p>Two of the most popular AI customer support tools for Shopify, compared honestly on price, AI quality, and ease of setup.</p>
+							<a href="tidio-vs-gorgias.html" class="read-link">Read the comparison</a>
+						</div>
+					</div>
+					<div class="col-4 col-12-medium">
+						<div class="article-card">
+							<span class="card-tag">Comparison</span>
+							<h3>Jasper vs Copy.ai for e-commerce — which is better in 2026?</h3>
+							<p>We tested both tools with identical prompts across five content types. Here's where each one wins.</p>
+							<a href="jasper-vs-copyai-ecommerce.html" class="read-link">Read the comparison</a>
+						</div>
+					</div>
+					<div class="col-4 col-12-medium">
+						<div class="article-card">
+							<span class="card-tag">Tutorial</span>
+							<h3>How to use AI to write Amazon listing titles and bullet points</h3>
+							<p>Step-by-step with the exact prompts to use, plus a before-and-after example on a real product.</p>
+							<a href="ai-amazon-listing-optimisation.html" class="read-link">Read the tutorial</a>
+						</div>
+					</div>
 				</div>
-			</section>
+			</div>
+		</section>
 
-		<!-- Affiliate Disclosure Anchor -->
-			<div id="affiliate-disclosure"></div>
+		<!-- Articles 7–10 -->
+		<section class="main style1 special">
+			<div class="container">
+				<div class="row gtr-150">
+					<div class="col-4 col-12-medium">
+						<div class="article-card">
+							<span class="card-tag">Platform guide</span>
+							<h3>Best AI tools for Etsy sellers (2026)</h3>
+							<p>Listings, SEO, customer messages, and product photos — the AI tools that actually help Etsy sellers, not just Shopify.</p>
+							<a href="best-ai-tools-etsy-sellers.html" class="read-link">Read the guide</a>
+						</div>
+					</div>
+					<div class="col-4 col-12-medium">
+						<div class="article-card">
+							<span class="card-tag">Tutorial</span>
+							<h3>How to use AI for e-commerce email marketing</h3>
+							<p>Build your three essential flows with AI, plus an honest Omnisend vs Klaviyo comparison for Shopify stores.</p>
+							<a href="ai-ecommerce-email-marketing.html" class="read-link">Read the tutorial</a>
+						</div>
+					</div>
+					<div class="col-4 col-12-medium">
+						<div class="article-card">
+							<span class="card-tag">Listicle</span>
+							<h3>AI product photo tools for Shopify — remove backgrounds, swap models, generate lifestyle shots</h3>
+							<p>Professional product photos on a zero budget. We tested every major AI photo tool with the same source image.</p>
+							<a href="ai-product-photo-tools.html" class="read-link">Read the guide</a>
+						</div>
+					</div>
+				</div>
+				<div class="row gtr-150" style="margin-top: 2em;">
+					<div class="col-4 col-12-medium col-offset-4">
+						<div class="article-card">
+							<span class="card-tag">Stack guide</span>
+							<h3>The AI tool stack every Shopify store should have in 2026 (under $100/month)</h3>
+							<p>Three concrete stacks — free, $50/month, and $100/month — so you know exactly what to use at every stage.</p>
+							<a href="shopify-ai-tool-stack.html" class="read-link">Read the stack guide</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Tool spotlights (Tidio + Omnisend — affiliate) -->
+		<section id="tools" class="main style2 special">
+			<div class="container">
+				<header class="major">
+					<h2>Tools we recommend</h2>
+				</header>
+				<p>The two tools we send most of our readers to — both tested, both have free plans, both pay a commission if you sign up through our link (at no extra cost to you).</p>
+				<div class="row gtr-150" style="margin-top: 2em;">
+					<div class="col-6 col-12-medium">
+						<div class="tool-card">
+							<div class="tool-name">Tidio</div>
+							<span class="tool-commission">30% recurring commission</span>
+							<p>AI-powered customer support for Shopify stores. Lyro AI resolves up to 73% of queries without human involvement. Free plan available — 50 Lyro conversations per month.</p>
+							<ul class="actions special">
+								<li><a href="tidio-vs-gorgias.html" class="button small">Read our review</a></li>
+								<li><a href="https://www.tidio.com/?ref=aiforecom" class="button primary small" target="_blank" rel="noopener">Try Tidio free</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-6 col-12-medium">
+						<div class="tool-card">
+							<div class="tool-name">Omnisend</div>
+							<span class="tool-commission">20% recurring commission</span>
+							<p>Email and SMS automation for e-commerce. AI-written flows, send-time optimisation, and a free plan that covers 500 emails per month — plenty for a new store.</p>
+							<ul class="actions special">
+								<li><a href="ai-ecommerce-email-marketing.html" class="button small">Read our review</a></li>
+								<li><a href="https://www.omnisend.com/?ref=aiforecom" class="button primary small" target="_blank" rel="noopener">Try Omnisend free</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA: AI Stack Finder -->
+		<section id="four" class="main style1 special">
+			<div class="container">
+				<header class="major">
+					<h2>Not sure where to start?</h2>
+				</header>
+				<p>Tell us your store type, your biggest bottleneck, and your budget. We'll recommend the right AI stack for your specific situation — in under five minutes, for free.</p>
+				<ul class="actions special">
+					<li><a href="stack-finder.html" class="button wide primary">Take the AI Stack Finder quiz</a></li>
+					<li><a href="best-ai-tools-shopify.html" class="button wide">Read our top picks</a></li>
+				</ul>
+			</div>
+		</section>
+
 		<!-- Footer -->
-			<section id="footer">
-				<div class="inner">
-					<div class="footer-branding">
-						<h3>AIForEcom</h3>
-						<p>Helping e-commerce sellers cut through the AI noise since 2026.</p>
-					</div>
-					<div class="footer-links">
-						<ul>
-							<li><a href="#header">Home</a></li>
-							<li><a href="#featured">Reviews</a></li>
-							<li><a href="#featured">Comparisons</a></li>
-							<li><a href="#featured">Tutorials</a></li>
-							<li><a href="#affiliate-disclosure">Affiliate Disclosure</a></li>
-						</ul>
-					</div>
-					<div class="footer-note">
-						<p>Some links on this site are affiliate links. We may earn a commission at no extra cost to you.</p>
-						<p class="copyright">© 2026 AIForEcom. All rights reserved.</p>
-					</div>
-				</div>
-			</section>
+		<section id="footer">
+			<ul class="icons">
+				<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands alt fa-reddit"><span class="label">Reddit</span></a></li>
+				<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+			</ul>
+			<ul class="copyright">
+				<li>&copy; 2026 AIForEcom</li>
+				<li>Some links are affiliate links — <a href="affiliate-disclosure.html">see disclosure</a></li>
+				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</section>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
 
 	</body>
 </html>
