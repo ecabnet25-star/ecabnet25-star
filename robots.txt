@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aiforecom.github.io/sitemap.xml
+Sitemap: https://ecabnet25-star.github.io/ecabnet25-star/sitemap.xml
