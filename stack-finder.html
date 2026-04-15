@@ -298,7 +298,7 @@
 		// CONFIG — replace with your Cloudflare Worker URL once deployed
 		// Leave as empty string to use smart fallback recommendations
 		// ─────────────────────────────────────────
-		const WORKER_URL = 'https://aiforecom-stack-finder.ecabnet25.workers.dev/';
+		const WORKER_URL = '';
 
 		// ─────────────────────────────────────────
 		// QUIZ DATA
@@ -549,11 +549,11 @@
 			if (a.pain === 'support') {
 				tools.push(isFree
 					? { name:'Shopify Inbox', category:'Customer support', why:'Free live chat built into Shopify. Handles the most common pre-purchase questions automatically.', price:'Free', affiliate:false, link:null, priority:'Start here' }
-					: { name:'Tidio', category:'Customer support', why:"Lyro AI resolves 70%+ of customer queries without you lifting a finger. Free plan covers 50 conversations/month.", price:'Free plan / $29/mo', affiliate:true, link:'https://www.tidio.com/?ref=aiforecom', priority:'Start here' }
+					: { name:'Tidio', category:'Customer support', why:"Lyro AI resolves 70%+ of customer queries without you lifting a finger. Free plan covers 50 conversations/month.", price:'Free plan / $29/mo', affiliate:true, link:'https://affiliate.tidio.com/c3bj43gd3dcf', priority:'Start here' }
 				);
 			}
 			if (a.pain === 'email') {
-				tools.push({ name:'Omnisend', category:'Email marketing', why:'Set up your abandoned cart and welcome flows once and they earn forever. Free plan covers 500 emails/month.', price:'Free plan / $16/mo', affiliate:true, link:'https://www.omnisend.com/?ref=aiforecom', priority:'Start here' });
+				tools.push({ name:'Omnisend', category:'Email marketing', why:'Set up your abandoned cart and welcome flows once and they earn forever. Free plan covers 500 emails/month.', price:'Free plan / $16/mo', affiliate:false, link:null, priority:'Start here' });
 			}
 			if (a.pain === 'seo') {
 				tools.push(isEtsy
@@ -567,12 +567,12 @@
 
 			// Add support if not already the lead
 			if (a.pain !== 'support' && !isFree) {
-				tools.push({ name:'Tidio', category:'Customer support', why:'AI handles common queries 24/7 so you can focus on growing instead of answering "where is my order".', price:'Free plan / $29/mo', affiliate:true, link:'https://www.tidio.com/?ref=aiforecom', priority:'Add next' });
+				tools.push({ name:'Tidio', category:'Customer support', why:'AI handles common queries 24/7 so you can focus on growing instead of answering "where is my order".', price:'Free plan / $29/mo', affiliate:true, link:'https://affiliate.tidio.com/c3bj43gd3dcf', priority:'Add next' });
 			}
 
 			// Add email if not already the lead
 			if (a.pain !== 'email') {
-				tools.push({ name:'Omnisend', category:'Email marketing', why:'Abandoned cart emails alone typically recover 5–15% of lost sales. Set it up once, earn from it forever.', price:'Free plan / $16/mo', affiliate:true, link:'https://www.omnisend.com/?ref=aiforecom', priority: isFree ? 'Add next' : 'Add next' });
+				tools.push({ name:'Omnisend', category:'Email marketing', why:'Abandoned cart emails alone typically recover 5–15% of lost sales. Set it up once, earn from it forever.', price:'Free plan / $16/mo', affiliate:false, link:null, priority: isFree ? 'Add next' : 'Add next' });
 			}
 
 			// Add Etsy SEO if Etsy seller and not already the lead

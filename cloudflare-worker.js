@@ -13,7 +13,7 @@ AVAILABLE TOOLS (only recommend from this list):
 - Shopify Inbox: customer support, free
 - Tidio: customer support, free plan + $29/mo [AFFILIATE]
 - Gorgias: customer support, $60/mo, for high-volume stores
-- Omnisend: email marketing, free plan + $16/mo [AFFILIATE]
+- Omnisend: email marketing, free plan + $16/mo (reviewed, no affiliate link)
 - Klaviyo: email marketing, free plan + $20/mo, better analytics
 - eRank: Etsy SEO, free plan + $9.99/mo
 - Marmalead: Etsy SEO, $19/mo
@@ -24,8 +24,8 @@ AVAILABLE TOOLS (only recommend from this list):
 - Pebblely: lifestyle photo generation, $19/mo
 
 AFFILIATE LINKS (use these exact URLs only for affiliate tools):
-- Tidio: https://www.tidio.com/?ref=aiforecom
-- Omnisend: https://www.omnisend.com/?ref=aiforecom
+- Tidio: https://affiliate.tidio.com/c3bj43gd3dcf
+- Omnisend: https://www.omnisend.com/
 
 RULES:
 - Recommend 3 to 5 tools maximum

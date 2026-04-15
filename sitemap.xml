@@ -92,4 +92,11 @@
     <priority>0.3</priority>
   </url>
 
+  <url>
+    <loc>https://ecabnet25-star.github.io/ecabnet25-star/i-built-this-ai-stack-finder.html</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>
