@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>I Built a Free Social Media Scheduler for E-Commerce Sellers — Here's How — AIForEcom</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="How and why I built a free desktop app that schedules posts to X, Reddit, Instagram, Facebook, and Telegram — built for Shopify and Etsy sellers." />
+		<link rel="icon" type="image/x-icon" href="favicon.ico" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			#site-nav { position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(36,41,67,.97);display:flex;align-items:center;justify-content:space-between;padding:0 2em;height:54px; }
+			#site-nav .nav-logo { font-size:1.1em;font-weight:600;color:#fff;text-decoration:none;letter-spacing:.03em; }
+			#site-nav ul { list-style:none;display:flex;gap:.2em;margin:0;padding:0; }
+			#site-nav ul li a { color:rgba(255,255,255,.75);text-decoration:none;font-size:.82em;letter-spacing:.08em;text-transform:uppercase;padding:.5em .9em;border-radius:4px;transition:color .2s,background .2s; }
+			#site-nav ul li a:hover { color:#fff;background:rgba(255,255,255,.1); }
+			#site-nav ul li a.nav-highlight { color:#fff;background:rgba(99,179,237,.25);border:1px solid rgba(99,179,237,.5); }
+			body { padding-top:54px; }
+			.article-wrap { max-width:740px;margin:0 auto;padding:4em 2em 5em; }
+			.article-wrap .article-meta { font-size:.78em;letter-spacing:.1em;text-transform:uppercase;color:#6366f1;font-weight:700;margin-bottom:.8em; }
+			.article-wrap h1 { font-size:2em;line-height:1.25;color:#1a1a2e;margin-bottom:.6em; }
+			.article-wrap .article-intro { font-size:1.08em;color:#444;line-height:1.7;border-left:3px solid #6366f1;padding-left:1em;margin-bottom:2em; }
+			.article-wrap h2 { font-size:1.3em;color:#1a1a2e;margin:2em 0 .5em;padding-bottom:.3em;border-bottom:1px solid #e8eaf0; }
+			.article-wrap h3 { font-size:1.05em;color:#1a1a2e;margin:1.5em 0 .4em;font-weight:700; }
+			.article-wrap p { font-size:.95em;line-height:1.8;color:#333;margin-bottom:1.2em; }
+			.article-wrap ul { margin:0 0 1.2em 1.5em;font-size:.95em;line-height:1.8;color:#333; }
+			.article-wrap ul li { list-style:disc;margin-bottom:.3em; }
+			.article-wrap code { background:#f3f4f6;border-radius:4px;padding:.15em .4em;font-size:.88em;font-family:'Courier New',monospace;color:#4f46e5; }
+			.article-wrap pre { background:#1e1e2e;border-radius:6px;padding:1.2em 1.4em;margin:1.4em 0;overflow-x:auto; }
+			.article-wrap pre code { background:none;color:#cdd6f4;font-size:.85em;padding:0; }
+			.callout { background:#f5f5ff;border:1px solid #c7d2fe;border-radius:8px;padding:1.2em 1.4em;margin:1.8em 0; }
+			.callout strong { color:#4f46e5;display:block;margin-bottom:.4em;font-size:.88em;text-transform:uppercase;letter-spacing:.08em; }
+			.callout p { margin:0;font-size:.92em;color:#3730a3;line-height:1.6; }
+			.try-box { background:linear-gradient(135deg,#1a1a2e 0%,#2d2d50 100%);border-radius:10px;padding:1.8em 2em;margin:2.5em 0;text-align:center; }
+			.try-box h3 { color:#fff!important;margin:0 0 .5em!important;font-size:1.2em!important; }
+			.try-box p { color:rgba(255,255,255,.85)!important;margin:0 0 1.2em!important;font-size:.92em!important; }
+			.back-link { display:inline-block;font-size:.82em;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6366f1;text-decoration:none;margin-bottom:2em; }
+			.back-link::before { content:"← "; }
+			.back-link:hover { color:#4f46e5; }
+			@media screen and (max-width:640px) { #site-nav ul { display:none; } .article-wrap { padding:2.5em 1.2em 4em; } .article-wrap h1 { font-size:1.5em; } }
+		</style>
+	</head>
+	<body class="is-preload">
+		<nav id="site-nav">
+			<a href="index.html" class="nav-logo">AIForEcom</a>
+			<ul>
+				<li><a href="index.html#articles">Reviews</a></li>
+				<li><a href="stack-finder.html">AI Stack Finder</a></li>
+				<li><a href="social-media-scheduler.html" class="nav-highlight">Free Scheduler</a></li>
+			</ul>
+		</nav>
+
+		<section class="main style1">
+			<div class="article-wrap">
+
+				<a href="index.html" class="back-link">Back to all articles</a>
+
+				<p class="article-meta">Behind the build</p>
+				<h1>I built a free social media scheduler for e-commerce sellers — here's how</h1>
+
+				<p class="article-intro">Buffer costs $6 per channel per month. Hootsuite starts at $99. Neither of them supports Reddit scheduling. I built a free alternative in Python that posts to X, Reddit, Instagram, Facebook, and Telegram automatically. Here's the whole story.</p>
+
+				<h2>The problem I was solving</h2>
+
+				<p>When I started talking to e-commerce sellers about their social media habits, the pattern was consistent: they knew they should be posting consistently, they weren't, and the reason was almost always friction rather than lack of content ideas.</p>
+
+				<p>The tools that exist are either expensive (Buffer, Hootsuite, Sprout Social all charge monthly fees per channel), missing platforms sellers actually care about (none of the major schedulers support Reddit, which is genuinely valuable for niche product communities), or require creating yet another account on yet another cloud service.</p>
+
+				<p>I wanted something different: a free, local-first tool that handles the scheduling mechanics without charging monthly fees or requiring trust in a third-party server.</p>
+
+				<h2>What I built</h2>
+
+				<p>A Windows desktop application built in Python that:</p>
+
+				<ul>
+					<li>Connects directly to X, Reddit, Instagram, Facebook, and Telegram via their official APIs</li>
+					<li>Lets you compose a post, select which platforms to send to, pick the target subreddit or page, and set a delivery time</li>
+					<li>Stores everything locally in SQLite — no cloud backend, no data leaving your machine</li>
+					<li>Delivers posts automatically at the scheduled time when the app is running</li>
+					<li>Includes a web interface accessible at <code>localhost:5000</code> when running</li>
+				</ul>
+
+				<h2>The tech stack</h2>
+
+				<ul>
+					<li><strong>Python 3.8+</strong> — main language</li>
+					<li><strong>PyQt5</strong> — desktop GUI</li>
+					<li><strong>APScheduler</strong> — handles the scheduling and timed delivery</li>
+					<li><strong>Tweepy</strong> — X (Twitter) API integration</li>
+					<li><strong>PRAW</strong> — Reddit API integration</li>
+					<li><strong>requests + requests-oauthlib</strong> — Facebook, Instagram, Telegram</li>
+					<li><strong>SQLite</strong> — local storage for scheduled posts and credentials</li>
+				</ul>
+
+				<h2>Why Python and PyQt5</h2>
+
+				<p>Python was the natural choice because the API libraries for every platform I wanted to support already exist and are well-maintained. Tweepy for X and PRAW for Reddit are both excellent — they handle the OAuth complexity cleanly and abstract away the API specifics.</p>
+
+				<p>PyQt5 for the GUI was a pragmatic decision. It's not the most modern choice but it produces a native-feeling Windows application that doesn't require users to install a runtime or deal with Electron's memory overhead. The goal was something lightweight that could run in the background without eating resources.</p>
+
+				<p>APScheduler was the right tool for the scheduling part — it runs inside the same Python process, supports persistent job stores (so scheduled posts survive app restarts), and has a clean API for adding, removing, and inspecting jobs.</p>
+
+				<h2>The hardest part: platform APIs</h2>
+
+				<p>Each platform's API has its own OAuth flow, its own rate limits, and its own quirks. The hardest was Instagram, which requires images to be accessible at a public URL rather than uploaded as a file — a constraint of the Graph API that's genuinely annoying but not a dealbreaker. The solution was to document this clearly and require users to host images publicly before scheduling.</p>
+
+				<p>Reddit was the most technically interesting. PRAW makes basic posting straightforward, but handling subreddit-specific rules (flair requirements, link-only subreddits, posting restrictions) required more careful error handling than the other platforms. The app catches these errors and surfaces them clearly rather than silently failing.</p>
+
+				<p>Facebook and Instagram share the same Graph API but have different authentication flows and different permission scopes. Getting both working correctly from the same OAuth setup took the most debugging time.</p>
+
+				<h2>The local-first decision</h2>
+
+				<p>Building without a cloud backend was a deliberate choice, not a limitation. The primary concern e-commerce sellers raise about social media tools is handing their platform credentials to a third party. With a local-first app, there is no third party — credentials are stored in SQLite on your machine and API calls go directly from your computer to each platform.</p>
+
+				<p>The obvious limitation is that the app needs to be running for scheduled posts to deliver. This is a real constraint, and it's the main reason a cloud version is worth building eventually. But for sellers who keep their computer on during working hours, it's a workable tradeoff for a free tool.</p>
+
+				<h2>What's coming next</h2>
+
+				<p>The two most-requested features from early testers are caption generation (AI-written post text from a product URL or description) and a cloud-hosted version that removes the "app must be running" limitation.</p>
+
+				<p>The caption generation feature is the more interesting build. The architecture is similar to the AI Stack Finder: a Cloudflare Worker calls the Anthropic API with the product details and returns platform-specific caption variations. The scheduling app then treats AI-generated captions the same as manually-written ones.</p>
+
+				<p>The cloud version requires a proper backend — probably a Flask API deployed to Railway or Render — plus a job queue that can handle scheduled delivery without a desktop process. That's a bigger lift but it's the path to removing the main limitation.</p>
+
+				<div class="try-box">
+					<h3>Download the scheduler — free</h3>
+					<p>Windows desktop app. Connects to X, Reddit, Instagram, Facebook, and Telegram. No monthly fee.</p>
+					<ul class="actions special" style="margin:0;justify-content:center">
+						<li><a href="social-media-scheduler.html" class="button primary">Get the app</a></li>
+					</ul>
+				</div>
+
+				<div class="callout">
+					<strong>Also worth reading</strong>
+					<p>The same approach used here — building something free and useful for an audience, then writing honestly about how it was built — is how the AI Stack Finder got its first 200 users. Both tools are free to use and built specifically for e-commerce sellers.</p>
+				</div>
+
+			</div>
+		</section>
+
+		<section id="footer">
+			<ul class="copyright">
+				<li>&copy; 2026 AIForEcom</li>
+				<li><a href="affiliate-disclosure.html">Affiliate disclosure</a></li>
+				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</section>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>

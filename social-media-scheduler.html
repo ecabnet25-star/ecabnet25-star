@@ -1,0 +1,400 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Social Media Scheduler for E-Commerce Sellers — AIForEcom</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Free desktop app that schedules and auto-posts to X, Reddit, Instagram, Facebook, and Telegram. Built for Shopify and Etsy sellers. No monthly fee." />
+		<link rel="icon" type="image/x-icon" href="favicon.ico" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			#site-nav {
+				position:fixed;top:0;left:0;right:0;z-index:9999;
+				background:rgba(36,41,67,.97);display:flex;
+				align-items:center;justify-content:space-between;
+				padding:0 2em;height:54px;
+			}
+			#site-nav .nav-logo { font-size:1.1em;font-weight:600;color:#fff;text-decoration:none;letter-spacing:.03em; }
+			#site-nav ul { list-style:none;display:flex;gap:.2em;margin:0;padding:0; }
+			#site-nav ul li a { color:rgba(255,255,255,.75);text-decoration:none;font-size:.82em;letter-spacing:.08em;text-transform:uppercase;padding:.5em .9em;border-radius:4px;transition:color .2s,background .2s; }
+			#site-nav ul li a:hover { color:#fff;background:rgba(255,255,255,.1); }
+			#site-nav ul li a.nav-highlight { color:#fff;background:rgba(99,179,237,.25);border:1px solid rgba(99,179,237,.5); }
+			body { padding-top:54px; }
+			#header { margin-top:-54px;padding-top:54px; }
+
+			/* ── Hero ── */
+			.product-hero {
+				background:#1a1a2e;
+				padding:5em 2em 4em;
+				text-align:center;
+			}
+			.product-hero .eyebrow {
+				display:inline-block;background:rgba(99,102,241,.25);
+				border:1px solid rgba(99,102,241,.5);color:#a5b4fc;
+				font-size:.75em;font-weight:700;letter-spacing:.12em;
+				text-transform:uppercase;padding:.3em 1em;border-radius:20px;
+				margin-bottom:1.2em;
+			}
+			.product-hero h1 { font-size:2.4em;line-height:1.2;color:#fff;margin-bottom:.6em; }
+			.product-hero p { font-size:1.1em;color:rgba(255,255,255,.75);line-height:1.7;max-width:560px;margin:0 auto 2em; }
+			.platform-icons { display:flex;align-items:center;justify-content:center;gap:1.2em;flex-wrap:wrap;margin-bottom:2em; }
+			.platform-pill {
+				display:inline-flex;align-items:center;gap:.45em;
+				background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+				border-radius:20px;padding:.35em 1em;font-size:.82em;color:rgba(255,255,255,.85);
+			}
+			.free-tag {
+				display:inline-block;background:#10b981;color:#fff;
+				font-size:.7em;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+				padding:.15em .6em;border-radius:3px;margin-left:.4em;vertical-align:middle;
+			}
+
+			/* ── Feature grid ── */
+			.features-grid {
+				display:grid;grid-template-columns:repeat(3,1fr);gap:1.5em;
+				margin:3em 0;
+			}
+			.feature-card {
+				background:#fff;border:1px solid #e8eaf0;border-radius:10px;
+				padding:1.6em;
+			}
+			.feature-card .icon {
+				width:42px;height:42px;border-radius:10px;
+				background:#ede9fe;display:flex;align-items:center;justify-content:center;
+				margin-bottom:1em;font-size:1.3em;
+			}
+			.feature-card h3 { font-size:1em;font-weight:700;color:#1a1a2e;margin:0 0 .4em; }
+			.feature-card p { font-size:.88em;color:#555;line-height:1.6;margin:0; }
+
+			/* ── How it works ── */
+			.steps { counter-reset:step;margin:2em 0; }
+			.step {
+				display:flex;gap:1.2em;align-items:flex-start;
+				padding:1.2em 0;border-bottom:1px solid #e8eaf0;
+			}
+			.step:last-child { border-bottom:none; }
+			.step-num {
+				width:32px;height:32px;border-radius:50%;background:#6366f1;
+				color:#fff;font-size:.85em;font-weight:700;
+				display:flex;align-items:center;justify-content:center;flex-shrink:0;
+			}
+			.step h3 { font-size:.95em;font-weight:700;color:#1a1a2e;margin:0 0 .25em; }
+			.step p { font-size:.88em;color:#555;line-height:1.6;margin:0; }
+
+			/* ── Download CTA ── */
+			.download-section {
+				background:#f8f9ff;border:1px solid #e8eaf0;border-radius:12px;
+				padding:2.5em 2em;text-align:center;margin:3em 0;
+			}
+			.download-section h2 { font-size:1.6em;color:#1a1a2e;margin:0 0 .5em; }
+			.download-section p { font-size:.95em;color:#555;margin:0 0 1.8em;line-height:1.6; }
+			.dl-meta { font-size:.78em;color:#999;margin-top:.8em; }
+			.dl-meta span { margin:0 .6em; }
+
+			/* ── Embed section ── */
+			.embed-section { margin:3em 0; }
+			.embed-placeholder {
+				background:#f3f4f6;border:2px dashed #d1d5db;border-radius:10px;
+				padding:4em 2em;text-align:center;
+			}
+			.embed-placeholder h3 { color:#6b7280;margin:0 0 .5em; }
+			.embed-placeholder p { color:#9ca3af;font-size:.9em;margin:0; }
+
+			/* ── Comparison ── */
+			.compare-table { width:100%;border-collapse:collapse;margin:2em 0;font-size:.88em; }
+			.compare-table th { background:#1a1a2e;color:#fff;padding:.7em 1em;text-align:left; }
+			.compare-table td { padding:.6em 1em;border-bottom:1px solid #e8eaf0; }
+			.compare-table tr:nth-child(even) td { background:#f9fafb; }
+			.compare-table .check { color:#10b981;font-weight:700; }
+			.compare-table .cross { color:#ef4444; }
+			.compare-table .our-col { background:#f5f5ff!important; }
+			.compare-table th.our-col { background:#6366f1; }
+
+			/* ── Requirement notice ── */
+			.req-box {
+				background:#fffbeb;border:1px solid #fcd34d;border-radius:8px;
+				padding:1em 1.2em;font-size:.88em;color:#92400e;margin:1.5em 0;
+			}
+
+			.page-wrap { max-width:860px;margin:0 auto;padding:0 2em; }
+
+			@media screen and (max-width:768px) {
+				.features-grid { grid-template-columns:1fr; }
+				.product-hero h1 { font-size:1.7em; }
+				#site-nav ul { display:none; }
+				.page-wrap { padding:0 1.2em; }
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<nav id="site-nav">
+			<a href="index.html" class="nav-logo">AIForEcom</a>
+			<ul>
+				<li><a href="index.html#articles">Reviews</a></li>
+				<li><a href="index.html#articles">Comparisons</a></li>
+				<li><a href="stack-finder.html">AI Stack Finder</a></li>
+				<li><a href="social-media-scheduler.html" class="nav-highlight">Free Scheduler</a></li>
+			</ul>
+		</nav>
+
+		<!-- Hero -->
+		<div class="product-hero">
+			<span class="eyebrow">Free desktop app</span>
+			<h1>Schedule social media posts<br />for your e-commerce store</h1>
+			<p>Connect once. Post automatically to X, Reddit, Instagram, Facebook, and Telegram — no monthly subscription, no cloud required.</p>
+
+			<div class="platform-icons">
+				<span class="platform-pill">
+					<span class="icon brands fa-twitter" style="font-size:14px"></span> X (Twitter)
+				</span>
+				<span class="platform-pill">
+					<span class="icon brands fa-reddit" style="font-size:14px"></span> Reddit
+				</span>
+				<span class="platform-pill">
+					<span class="icon brands fa-instagram" style="font-size:14px"></span> Instagram
+				</span>
+				<span class="platform-pill">
+					<span class="icon brands fa-facebook" style="font-size:14px"></span> Facebook
+				</span>
+				<span class="platform-pill">
+					<span class="icon brands fa-telegram" style="font-size:14px"></span> Telegram
+				</span>
+			</div>
+
+			<ul class="actions special" style="justify-content:center">
+				<li><a href="#download" class="button primary scrolly large">Download free — Windows</a></li>
+				<li><a href="#how-it-works" class="button scrolly">See how it works</a></li>
+			</ul>
+		</div>
+
+		<div class="page-wrap">
+
+			<!-- Feature grid -->
+			<div class="features-grid" style="margin-top:3.5em;">
+				<div class="feature-card">
+					<div class="icon">📅</div>
+					<h3>Schedule ahead</h3>
+					<p>Queue posts days or weeks in advance. Set the time, pick the platform, and let the app deliver automatically.</p>
+				</div>
+				<div class="feature-card">
+					<div class="icon">🔗</div>
+					<h3>Real API connections</h3>
+					<p>Direct OAuth integration with each platform — not a workaround. Posts go live exactly when you schedule them.</p>
+				</div>
+				<div class="feature-card">
+					<div class="icon">🌐</div>
+					<h3>5 platforms at once</h3>
+					<p>Write once, select your platforms, schedule once. No copy-pasting between apps or browser tabs.</p>
+				</div>
+				<div class="feature-card">
+					<div class="icon">🔒</div>
+					<h3>Private by default</h3>
+					<p>Your API credentials and post data stay on your machine. No accounts, no cloud sync, no data leaving your computer.</p>
+				</div>
+				<div class="feature-card">
+					<div class="icon">💰</div>
+					<h3>No subscription</h3>
+					<p>Buffer charges $6/channel/month. Hootsuite charges $99+. This app is free. Download it, keep it, use it forever.</p>
+				</div>
+				<div class="feature-card">
+					<div class="icon">🛒</div>
+					<h3>Built for sellers</h3>
+					<p>Designed specifically for Shopify, Etsy, and Amazon sellers who need consistent social presence without the overhead.</p>
+				</div>
+			</div>
+
+			<!-- How it works -->
+			<section id="how-it-works" style="margin-top:3em;">
+				<h2 style="font-size:1.5em;color:#1a1a2e;margin-bottom:1.2em;padding-bottom:.4em;border-bottom:1px solid #e8eaf0;">How it works</h2>
+				<div class="steps">
+					<div class="step">
+						<div class="step-num">1</div>
+						<div>
+							<h3>Download and run</h3>
+							<p>Download the Windows app and run it — no installation required. Runs as a standalone desktop application.</p>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-num">2</div>
+						<div>
+							<h3>Connect your accounts</h3>
+							<p>Authenticate each platform once via OAuth — your credentials are stored locally, never sent to a server. Connect X, Reddit, Instagram, Facebook, and Telegram individually or all at once.</p>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-num">3</div>
+						<div>
+							<h3>Compose your post</h3>
+							<p>Write your caption, select which platforms to post to, and pick the subreddit, page, or channel for each one. For Instagram, add a public image URL.</p>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-num">4</div>
+						<div>
+							<h3>Set the schedule</h3>
+							<p>Pick a date and time for delivery. The app schedules it internally — just keep the app running in the background and it posts automatically at the right time.</p>
+						</div>
+					</div>
+					<div class="step">
+						<div class="step-num">5</div>
+						<div>
+							<h3>Done</h3>
+							<p>Your posts go live on time, every time. Queue up a week of content in one session and let the app handle the rest.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Requirement notice -->
+			<div class="req-box">
+				<strong>Important:</strong> The app must be running on your computer for scheduled posts to deliver. It works best when left open in the background or minimised to system tray. A future cloud version will handle this automatically.
+			</div>
+
+			<!-- Comparison -->
+			<section style="margin-top:3em;">
+				<h2 style="font-size:1.5em;color:#1a1a2e;margin-bottom:1.2em;padding-bottom:.4em;border-bottom:1px solid #e8eaf0;">How it compares</h2>
+				<table class="compare-table">
+					<thead>
+						<tr>
+							<th>Feature</th>
+							<th class="our-col">This app <span class="free-tag">Free</span></th>
+							<th>Buffer</th>
+							<th>Hootsuite</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Monthly cost</td>
+							<td class="our-col check">$0</td>
+							<td>$6/channel/mo</td>
+							<td>$99+/mo</td>
+						</tr>
+						<tr>
+							<td>X (Twitter)</td>
+							<td class="our-col check">✓</td>
+							<td class="check">✓</td>
+							<td class="check">✓</td>
+						</tr>
+						<tr>
+							<td>Reddit</td>
+							<td class="our-col check">✓</td>
+							<td class="cross">✗</td>
+							<td class="cross">✗</td>
+						</tr>
+						<tr>
+							<td>Instagram</td>
+							<td class="our-col check">✓</td>
+							<td class="check">✓</td>
+							<td class="check">✓</td>
+						</tr>
+						<tr>
+							<td>Facebook</td>
+							<td class="our-col check">✓</td>
+							<td class="check">✓</td>
+							<td class="check">✓</td>
+						</tr>
+						<tr>
+							<td>Telegram</td>
+							<td class="our-col check">✓</td>
+							<td class="cross">✗</td>
+							<td class="cross">✗</td>
+						</tr>
+						<tr>
+							<td>Data stays on your device</td>
+							<td class="our-col check">✓</td>
+							<td class="cross">✗</td>
+							<td class="cross">✗</td>
+						</tr>
+						<tr>
+							<td>No account required</td>
+							<td class="our-col check">✓</td>
+							<td class="cross">✗</td>
+							<td class="cross">✗</td>
+						</tr>
+					</tbody>
+				</table>
+				<p style="font-size:.82em;color:#999;margin-top:.5em;">Reddit scheduling is a genuine differentiator — no major paid tool supports it. For Shopify and Etsy sellers who use Reddit for community marketing, this is the only free option.</p>
+			</section>
+
+			<!-- Web interface -->
+			<section id="embed-section" class="embed-section">
+				<h2 style="font-size:1.5em;color:#1a1a2e;margin-bottom:.6em;padding-bottom:.4em;border-bottom:1px solid #e8eaf0;">Web interface</h2>
+				<p style="font-size:.95em;color:#444;line-height:1.7;margin-bottom:1.4em;">When the app is running, a web interface is available locally at <code>localhost:5000</code> — giving you a browser-based view of your schedule without opening the desktop app. A hosted cloud version is in development that will remove the requirement to keep your computer running.</p>
+				<div class="embed-placeholder">
+					<h3>Cloud version coming soon</h3>
+					<p>The hosted version will run 24/7 without needing your computer on.<br />No changes to the free pricing.</p>
+				</div>
+			</section>
+
+			<!-- Download -->
+			<section id="download" class="download-section">
+				<h2>Download the app — free</h2>
+				<p>Windows desktop application. No installation wizard, no account signup, no monthly fee.<br />Connect your accounts and start scheduling in under 10 minutes.</p>
+				<ul class="actions special" style="justify-content:center;margin-bottom:0">
+					<li><a href="https://drive.google.com/drive/folders/1agPZ-kvrH2relB52-SZgRGLG6-wB73Tx?usp=sharing" class="button primary large" id="download-btn">Download for Windows</a></li>
+				</ul>
+				<p class="dl-meta">
+					<span>Windows 10/11</span>
+					<span>·</span>
+					<span>Python 3.8+ required</span>
+					<span>·</span>
+					<span>Free forever</span>
+				</p>
+				<p style="font-size:.8em;color:#bbb;margin-top:.5em;">Mac and Linux versions not yet available. Cloud version coming later.</p>
+			</section>
+
+			<!-- FAQ -->
+			<section style="margin:2em 0 4em;">
+				<h2 style="font-size:1.5em;color:#1a1a2e;margin-bottom:1.2em;padding-bottom:.4em;border-bottom:1px solid #e8eaf0;">Common questions</h2>
+
+				<h3 style="font-size:1em;color:#1a1a2e;margin:1.4em 0 .3em;font-weight:700;">Is it really free?</h3>
+				<p style="font-size:.92em;color:#444;line-height:1.7;margin:0 0 1em;">Yes, completely. No trial period, no premium tier, no credit card. Download it and use it indefinitely.</p>
+
+				<h3 style="font-size:1em;color:#1a1a2e;margin:1.4em 0 .3em;font-weight:700;">What happens if my computer is off when a post is scheduled?</h3>
+				<p style="font-size:.92em;color:#444;line-height:1.7;margin:0 0 1em;">The post won't send — the app needs to be running. For best results, keep the app open in the background or minimised. The cloud version (coming later) will handle this automatically.</p>
+
+				<h3 style="font-size:1em;color:#1a1a2e;margin:1.4em 0 .3em;font-weight:700;">Do I need to be technical to use it?</h3>
+				<p style="font-size:.92em;color:#444;line-height:1.7;margin:0 0 1em;">You need Python 3.8+ installed on your Windows machine. Setting up the API connections for each platform requires following their developer documentation — this takes 15–30 minutes per platform on first setup. Once connected, everything else is point-and-click.</p>
+
+				<h3 style="font-size:1em;color:#1a1a2e;margin:1.4em 0 .3em;font-weight:700;">Is it safe to enter my API credentials?</h3>
+				<p style="font-size:.92em;color:#444;line-height:1.7;margin:0 0 1em;">Your credentials are stored locally in SQLite on your machine. They are never transmitted to any server — there is no server. The app communicates directly with each platform's API, which is the same method all major scheduling tools use.</p>
+
+				<h3 style="font-size:1em;color:#1a1a2e;margin:1.4em 0 .3em;font-weight:700;">Why does Instagram need a public image URL?</h3>
+				<p style="font-size:.92em;color:#444;line-height:1.7;margin:0 0 1em;">Instagram's API requires images to be hosted at a publicly accessible URL rather than uploaded directly as a file. Host your product images on your Shopify store, Imgur, or any public image host and use that URL when scheduling.</p>
+
+				<h3 style="font-size:1em;color:#1a1a2e;margin:1.4em 0 .3em;font-weight:700;">Where can I report bugs or request features?</h3>
+				<p style="font-size:.92em;color:#444;line-height:1.7;margin:0 0 1em;">Post in <a href="https://www.reddit.com/user/No-Revolution9852/" target="_blank" rel="noopener" style="color:#6366f1">our Reddit community</a> or reach out on <a href="https://x.com/AIForEcom2026" target="_blank" rel="noopener" style="color:#6366f1">X @AIForEcom2026</a>.</p>
+			</section>
+
+		</div>
+
+		<section id="footer">
+			<ul class="icons">
+				<li><a href="https://x.com/AIForEcom2026" class="icon brands alt fa-twitter" target="_blank" rel="noopener"><span class="label">X</span></a></li>
+				<li><a href="https://www.reddit.com/user/No-Revolution9852/" class="icon brands alt fa-reddit" target="_blank" rel="noopener"><span class="label">Reddit</span></a></li>
+			</ul>
+			<ul class="copyright">
+				<li>&copy; 2026 AIForEcom</li>
+				<li><a href="affiliate-disclosure.html">Affiliate disclosure</a></li>
+				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</section>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+		<script>
+		// Once you have the download link, replace REPLACE_WITH_DOWNLOAD_LINK above
+		// OR uncomment and update these lines:
+		// document.getElementById('download-btn').href = 'YOUR_LINK_HERE';
+		// document.getElementById('download-btn').textContent = 'Download v1.0 for Windows (12MB)';
+		</script>
+
+	</body>
+</html>

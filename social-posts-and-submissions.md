@@ -145,7 +145,7 @@ If you run a Shopify or Etsy store, I'd love to know if the tool recommendations
 
 ## DIRECTORY SUBMISSIONS — Copy-Paste Ready
 
-### Futurepedia (futurepedia.io/submit)
+### Futurepedia (futurepedia.io/submit) - not free
 
 **Tool Name:** AIForEcom AI Stack Finder
 
@@ -164,7 +164,7 @@ AIForEcom's AI Stack Finder is a free 5-question quiz that recommends a personal
 
 ---
 
-### There's an AI For That (theresanaiforthat.com/submit)
+### There's an AI For That (theresanaiforthat.com/submit) - not free
 
 **Name:** AI Stack Finder by AIForEcom
 
@@ -189,4 +189,4 @@ Answer 5 questions about your e-commerce store and get a personalised AI tool st
 
 **URL:** [your URL]/stack-finder.html
 
-**Price:** Free
+**Price:** not free

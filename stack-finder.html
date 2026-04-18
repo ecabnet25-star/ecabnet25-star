@@ -601,6 +601,9 @@
 				photos: 'Download Photoroom and remove the background from your ten best-selling product photos. See the difference before paying for anything.'
 			};
 
+			// Add social scheduler if not already 5 tools
+			if(tools.length < 4) tools.push(socialTool);
+
 			return {
 				summary,
 				stack: tools.slice(0, 5),
